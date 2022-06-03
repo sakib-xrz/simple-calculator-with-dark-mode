@@ -43,11 +43,6 @@ input[type="button"]:hover {
     font-size: 52px;
 }
 
-
-.theme{
-    float: inline-end;
-}
-
 .theme button{
     padding: 5px 10px;
     border: none;
