@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="light.css" id="theme"> 
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">   
+</head>
+<body>
+    <div class="calculator-body">
+        <div class="theme">
+            <button id="dark-mode" onclick="switchTheme()">🌙 Dark Mode &nbsp</button>
+        </div>
+        <table>
+            <tr>
+                <td colspan="4"><input type="text" id="calculator-screen" placeholder="0"></td>
+            </tr>
+            <div id="calculator-button">
+                <tr>
+                    <td><input type="button" value="AC" onclick="Clear()"></td>
+                    <td><input type="button" value="DEL" onclick="Del()"></td>
+                    <td><input type="button" value="%" onclick="calculate('%')"></td>
+                    <td><input type="button" value="/" onclick="calculate('/')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" onclick="calculate('7')"></td>
+                    <td><input type="button" value="8" onclick="calculate('8')"></td>
+                    <td><input type="button" value="9" onclick="calculate('9')"></td>
+                    <td><input type="button" value="*" onclick="calculate('*')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" onclick="calculate('4')"></td>
+                    <td><input type="button" value="5" onclick="calculate('5')"></td>
+                    <td><input type="button" value="6" onclick="calculate('6')"></td>
+                    <td><input type="button" value="-" onclick="calculate('-')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" onclick="calculate('1')"></td>
+                    <td><input type="button" value="2" onclick="calculate('2')"></td>
+                    <td><input type="button" value="3" onclick="calculate('3')"></td>
+                    <td><input type="button" value="+" onclick="calculate('+')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="." onclick="calculate('.')"></td>
+                    <td><input type="button" value="0" onclick="calculate('0')"></td>
+                    <td colspan="2"><input type="button" value="=" onclick="result()" style="width: 162px;"></td>
+                    
+                </tr>
+            </div>
+        </table>
+    </div>
+
+    <script>
+        const display = document.getElementById("calculator-screen");
+        function calculate(newValue){
+            display.value += newValue;
+        }
+        function Clear(){
+            display.value = "";
+        }
+        function Del() {
+            display.value = display.value.slice(0,-1);
+        }
+        function result() {
+            try{
+                display.value = eval(display.value);
+            }catch(err){
+                display.value = "Syntax Error!"
+            }
+        }
+
+
+        // Swaps the style sheet to achieve dark mode.
+        function switchTheme() {
+        let darkMode = document.getElementById("dark-mode");
+        let theme = document.getElementById("theme");
+        if (theme.getAttribute("href") == "light.css") {
+            theme.href = "dark.css";
+            darkMode.innerHTML = "☀️ Light Mode";
+        } else {
+            theme.href = "light.css";
+            darkMode.innerHTML = "🌙 Dark Mode";
+        }
+        }
+    </script>
+</body>
+</html>
